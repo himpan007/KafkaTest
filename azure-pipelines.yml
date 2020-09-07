@@ -10,6 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: $(System.DefaultWorkingDirectory)/target/
+    artifactName: drop
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -20,3 +24,4 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+  
